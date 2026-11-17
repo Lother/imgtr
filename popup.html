@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="head">
+    <div class="demo" aria-hidden="true">
+      <div class="demo-frame">
+        <span class="demo-src">おはようございます</span>
+        <span class="demo-dst">早安</span>
+      </div>
+      <div class="scanline"></div>
+    </div>
+    <h1>圖片即譯</h1>
+    <p class="tagline">譯文直接疊回圖片上的文字位置。</p>
+  </header>
+
+  <main>
+    <div class="field">
+      <label class="eyebrow" for="apiKey">GEMINI API 金鑰</label>
+      <input id="apiKey" type="password" spellcheck="false" autocomplete="off"
+             placeholder="AIza…" />
+      <p class="hint">
+        免費取得：<a id="keyLink" href="#">Google AI Studio</a>。金鑰只存在這台瀏覽器。
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label class="eyebrow" for="targetLang">翻成</label>
+        <select id="targetLang">
+          <option>繁體中文</option>
+          <option>簡體中文</option>
+          <option>English</option>
+          <option>日本語</option>
+          <option>한국어</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="eyebrow" for="model">模型</label>
+        <input id="model" list="models" spellcheck="false" autocomplete="off" />
+        <datalist id="models">
+          <option value="gemini-3.5-flash-lite"></option>
+          <option value="gemini-3.1-flash-lite"></option>
+          <option value="gemini-flash-latest"></option>
+          <option value="gemini-3.6-flash"></option>
+          <option value="gemini-3.7-flash"></option>
+        </datalist>
+      </div>
+    </div>
+
+    <div class="toggle">
+      <div class="toggle-copy">
+        <span class="eyebrow">自動翻譯</span>
+        <p class="hint">捲到哪翻到哪，會持續消耗額度。</p>
+      </div>
+      <button id="auto" type="button" class="switch" role="switch" aria-checked="false">
+        <span class="knob"></span>
+      </button>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label class="eyebrow" for="minSize">自動模式最小邊長</label>
+        <div class="stepper">
+          <input id="minSize" type="number" min="60" max="600" step="10" />
+          <span class="unit">px</span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="eyebrow" for="chipPos">翻譯鈕位置</label>
+        <select id="chipPos">
+          <option value="tl">左上</option>
+          <option value="tr">右上</option>
+          <option value="bl">左下</option>
+          <option value="br">右下</option>
+          <option value="off">不顯示</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="save" class="save" type="button">儲存設定</button>
+      <button id="test" class="test" type="button">測試</button>
+    </div>
+    <p id="status" class="status" role="status"></p>
+  </main>
+
+  <footer>
+    <p class="keys"><kbd>Alt</kbd><kbd>Q</kbd><span>翻譯游標下的圖片</span></p>
+    <p class="keys"><kbd>Alt</kbd><kbd>A</kbd><span>開關自動翻譯</span></p>
+    <p class="keys"><kbd>Esc</kbd><span>清掉頁面上的譯文</span></p>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
